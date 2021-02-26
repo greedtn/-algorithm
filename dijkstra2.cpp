@@ -16,38 +16,36 @@ const ll INF = 1LL << 60;
 
 int main() {
     ll n, m, s; cin >> n >> m >> s;
-    
     Graph G(n);
     rep(i, m) {
         ll a, b, c; cin >> a >> b >> c;
+        a--; b--;
         G[a].push_back(Edge(b, c));
     }
-
-    // ダイクストラ
-    vector<bool> used(n, false);
     vector<ll> dist(n, INF);
     dist[s] = 0;
-    for (ll iter = 0; iter < n; iter++) {
-        // 「使用済み」でない頂点の中からdist値が最小の頂点を探す
-        ll min_dist = INF;
-        ll min_v = -1; // 最小の頂点を格納する変数, -1のままなら探索終わり
-        for (ll v = 0; v < n; v++) {
-            if (!used[v] && dist[v] < min_dist) {
-                min_dist = dist[v];
-                min_v = v;
+    priority_queue<P, vector<P>, greater<P>> q;
+    q.push(make_pair(dist[s], s));
+    
+    while (!q.empty()) {
+        ll v = q.top().second;
+        ll d = q.top().first;
+        q.pop();
+
+        if (d > dist[v]) continue;
+
+        for (auto e : G[v]) {
+            if (chmin(dist[e.to], dist[v] + e.cost)) {
+                q.push(make_pair(dist[e.to], e.to));
             }
         }
-        if (min_v == -1) break;
-
-        for (auto e : G[min_v]) {
-            chmin(dist[e.to], dist[min_v] + e.cost);
-        }
-
-        used[min_v] = true;
     }
-    for (ll v = 0; v < n; v++) {
+    // 結果出力
+    rep(v, n) {
         if (dist[v] < INF) cout << dist[v] << endl;
         else cout << "INF" << endl;
     }
+
     return 0;
+
 }
