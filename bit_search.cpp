@@ -3,6 +3,7 @@ using namespace std;
 #define rep(i,n) for (long long i = 0; i < (n); i++)
 using ll = long long;
 
+
 int main() {
     ll n, w;
     cin >> n >> w;
