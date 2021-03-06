@@ -4,6 +4,7 @@ using namespace std;
 using ll = long long;
 using Graph = vector<vector<ll>>;
 
+
 vector<ll> BFS(const Graph &G, ll s) {
     ll n = (ll)G.size();
     vector<ll> dist(n, -1);
