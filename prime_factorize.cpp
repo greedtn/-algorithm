@@ -3,6 +3,7 @@ using namespace std;
 using ll = long long;
 using P = pair<ll, ll>;
 
+
 vector<P> prime_factorize(ll n) {
     vector<P> res;
     for (ll a = 2; a * a <= n; a++) {
