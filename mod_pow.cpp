@@ -2,6 +2,7 @@
 using namespace std;
 using ll = long long;
 
+
 // a^n % p を計算する関数
 ll mod_pow(ll a, ll n, ll mod) {
     ll res = 1;
