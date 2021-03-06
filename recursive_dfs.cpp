@@ -4,6 +4,7 @@ using namespace std;
 using ll = long long;
 using Graph = vector<vector<ll>>;
 
+
 // 深さ優先探索
 vector<bool> seen;
 void dfs(const Graph &G, int v) {
